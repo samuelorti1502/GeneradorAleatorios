@@ -8,6 +8,7 @@ package formularios;
 import clases.Aleatorios;
 import clases.Aleatorios2;
 import clases.Burbuja;
+import clases.Insercion;
 import clases.Shell;
 import clases.Sonido;
 import java.io.BufferedReader;
@@ -128,6 +129,7 @@ public class FrmGenerador extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -159,6 +161,14 @@ public class FrmGenerador extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("Insercion");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
 
@@ -300,6 +310,47 @@ public class FrmGenerador extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        try {
+
+            JFileChooser file = new JFileChooser();
+            file.showOpenDialog(this);
+
+            File abre = file.getSelectedFile();
+
+            if (abre != null) {
+                Scanner scan = new Scanner(abre);
+                ArrayList<String> data = new ArrayList<String>();
+
+                while (scan.hasNextLine()) {
+
+                    String a;
+                    a = scan.nextLine();
+                    int l = a.length();
+                    int z[] = new int[l];
+                    String x[] = new String[l];
+
+                    x = a.split(",");
+
+                    data.add(x[0]);
+
+                }
+
+                int[] numbers = Arrays.stream(data.toArray(new String[]{})).mapToInt(Integer::parseInt).toArray();
+
+                Insercion insercion = new Insercion();
+                insercion.insertionSort(numbers);
+                
+                insercion.start();
+            }
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex + ""
+                    + "\nNo se ha encontrado el archivo",
+                    "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -342,6 +393,7 @@ public class FrmGenerador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblTiempo;
