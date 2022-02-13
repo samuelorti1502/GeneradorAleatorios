@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
@@ -36,12 +34,13 @@ public class Aleatorios2 extends Thread {
         Random rand = new Random();
         AtomicInteger count = new AtomicInteger(0);
         //int i = 0;
-        IntStream aleatorios = rand.ints(1000000, min_val, max_val);
+        IntStream aleatorios = rand.ints(10000, min_val, max_val);
 
-        try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(Paths.get("./aleatorios.csv")))) {
+        try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(Paths.get("./aleatorios.txt")))) {
             //pw.print("Hola");
            
-            aleatorios.forEach(x -> pw.println(count.incrementAndGet() + "., " + x + ", "));
+            //aleatorios.forEach(x -> pw.println(count.incrementAndGet() + "., " + x + ", "));
+            aleatorios.forEach(x -> pw.println(x + ","));
             
             pw.close();
 
@@ -50,6 +49,8 @@ public class Aleatorios2 extends Thread {
             Logger.getLogger(Aleatorios2.class.getName()).log(Level.SEVERE, null, ex);
             //pw.close();
         };
+        
+        System.out.println("Finalizo de generar");
 
     }
 

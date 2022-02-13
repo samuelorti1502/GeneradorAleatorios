@@ -12,7 +12,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Sonido extends Thread{
     
-    private String[] sonidos = {"relax.wav", "relax1.wav"};
+    private String[] sonidos = {"relax1.wav", "relax2.wav"};
     //public enum tiposonido {SECONDS, HOURS, HOURS12};
     private int sonidoseleccionado;
     
