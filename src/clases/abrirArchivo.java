@@ -40,6 +40,7 @@ public class abrirArchivo {
                 file = new JFileChooser("./");
                 file.setDialogTitle("Escoge el archivo a ordenar");
                 file.showOpenDialog(generador);
+                abre = file.getSelectedFile();
                 abrir(orden);
                 break;
             case 1:

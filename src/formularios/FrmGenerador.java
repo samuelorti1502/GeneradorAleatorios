@@ -70,7 +70,7 @@ public class FrmGenerador extends javax.swing.JFrame {
         /*Aleatorios ale = new Aleatorios();
         ale.start();*/
         Aleatorios2 ale = new Aleatorios2();
-        ale.cantidad(txtCantidad);
+        //ale.cantidad(txtCantidad);
         ale.start();
     }
 
@@ -141,8 +141,8 @@ public class FrmGenerador extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jLabel8 = new javax.swing.JLabel();
         lblTiempo = new javax.swing.JLabel();
-        txtCantidad = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -174,11 +174,11 @@ public class FrmGenerador extends javax.swing.JFrame {
 
         jMenuItem1.setText("jMenuItem1");
 
+        jLabel8.setText("jLabel8");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblTiempo.setText("jLabel1");
-
-        txtCantidad.setText("jLabel1");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de Ordenamiento"));
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -275,30 +275,42 @@ public class FrmGenerador extends javax.swing.JFrame {
                 .addComponent(lblUMG))
         );
 
-        jPanel2.setLayout(new java.awt.GridLayout(5, 2));
+        jPanel2.setLayout(new java.awt.GridLayout(5, 2, 0, 5));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Maximo");
         jPanel2.add(jLabel2);
 
-        lblMax.setText("jLabel3");
+        lblMax.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblMax.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMax.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.add(lblMax);
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setText("Minimo");
         jPanel2.add(jLabel9);
 
-        lblMin.setText("jLabel4");
+        lblMin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblMin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.add(lblMin);
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Pares");
         jPanel2.add(jLabel7);
 
-        txtPar.setText("jLabel8");
+        txtPar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtPar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtPar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.add(txtPar);
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Impares");
         jPanel2.add(jLabel3);
 
-        txtImpar.setText("jLabel4");
+        txtImpar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtImpar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtImpar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.add(txtImpar);
 
         jMenu1.setText("Ordenamientos");
@@ -358,17 +370,18 @@ public class FrmGenerador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(PanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(PanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(155, 155, 155)
+                                .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -377,13 +390,11 @@ public class FrmGenerador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(PanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -530,20 +541,24 @@ public class FrmGenerador extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         Estadisticas statics = statics = new Estadisticas();
         
-        /*int a = JOptionPane.showConfirmDialog(this, "Desea abrir el archivo que se genero?");
+        int a = JOptionPane.showConfirmDialog(this, "Desea abrir el archivo que se genero?");
         
         if(a == JOptionPane.YES_OPTION){
-            //statics.tipo(1, 0, this);
+            statics.tipo(1, 0, this);
         }else{
-            //statics.tipo(0, 0, this);
-        }*/
+            statics.tipo(0, 0, this);
+        }
         
+        //statics.valores(lblMax, lblMin, txtPar, txtImpar);
+        statics.setnMax(lblMax);
+        statics.setnMin(lblMin);
+        statics.setnPar(txtPar);
+        statics.setnImpar(txtImpar);
         statics.start();
         
-        //Primos primo = new Primos();
-        //primo.start();
+        Primos primo = new Primos();
+        primo.start();
         
-        statics.valores(lblMax, lblMin, txtPar, txtImpar);
         
         
         //abrir.abrir(this, 1);
@@ -639,6 +654,7 @@ public class FrmGenerador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -657,7 +673,6 @@ public class FrmGenerador extends javax.swing.JFrame {
     private javax.swing.JLabel lblReloj;
     private javax.swing.JLabel lblTiempo;
     private javax.swing.JLabel lblUMG;
-    private javax.swing.JLabel txtCantidad;
     private javax.swing.JLabel txtImpar;
     private javax.swing.JLabel txtPar;
     // End of variables declaration//GEN-END:variables

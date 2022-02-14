@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,6 +67,8 @@ public class Shell extends Thread {
         } catch (IOException ex) {
             Logger.getLogger(Shell.class.getName()).log(Level.SEVERE, null, ex);
         };
+        
+        JOptionPane.showMessageDialog(null, "Ha finalizado el ordenamiento shell");
 
     }
 

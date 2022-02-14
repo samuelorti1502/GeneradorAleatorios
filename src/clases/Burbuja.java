@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -109,15 +110,16 @@ public class Burbuja extends Thread {
 
             //this.tiempo = "Se tardo: " + getDate((dateTimeEnd - dateTimeStart), "HH:mm:ss:SSS");
             System.out.println("Se tardo: " + getDate((dateTimeEnd - dateTimeStart), "HH:mm:ss:SSS"));
-            
-            pw.println("Se tardo: " + getDate((dateTimeEnd - dateTimeStart), "HH:mm:ss:SSS"));
-            
-            //pw.println(this.tiempo);
 
+            pw.println("Se tardo: " + getDate((dateTimeEnd - dateTimeStart), "HH:mm:ss:SSS"));
+
+            //pw.println(this.tiempo);
             pw.close();
         } catch (IOException ex) {
             Logger.getLogger(Burbuja.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        JOptionPane.showMessageDialog(null, "Ha finalizado el ordenamiento burbuja");
 
     }
 

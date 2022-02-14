@@ -5,10 +5,13 @@
  */
 package clases;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 //import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
@@ -23,14 +26,49 @@ public final class Estadisticas extends Thread {
     private int impar;
     private int primo;
 
+    private JLabel nMax;
+    private JLabel nMin;
+    private JLabel nPar;
+    private JLabel nImpar;
+
+    int tipo;
+    int orden;
+    JFileChooser file;
+    File abre;
+
     public Estadisticas() {
-        estatics();
+        //estatics();
         //primos();
+    }
+
+    public void tipo(int tipo, int orden, JFrame generador) {
+        this.tipo = tipo;
+
+        switch (tipo) {
+            case 0:
+                //System.out.println("Tipo 0");
+                file = new JFileChooser("./");
+                file.setDialogTitle("Escoge el archivo a ordenar");
+                file.showOpenDialog(generador);
+                abre = file.getSelectedFile();
+                estatics();
+                break;
+            case 1:
+                //System.out.println("Tipo 1");
+                try {
+                abre = new File("./aleatorios.txt");
+                estatics();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            break;
+        }
     }
 
     public void estatics() {
         try {
-            Scanner inFile = new Scanner(new FileReader("./shell.txt"));
+            Scanner inFile = new Scanner(abre);
 
             int min = Integer.MAX_VALUE;
             int max = 0;
@@ -84,30 +122,25 @@ public final class Estadisticas extends Thread {
             this.setPar(p);
             this.setImpar(imp);
 
-            System.out.println("max………….." + max);
+            /*System.out.println("max………….." + max);
             System.out.println("min………….." + min);
             System.out.println("pares………….." + p);
-            System.out.println("impares………….." + imp);
+            System.out.println("impares………….." + imp);*/
             //System.out.println("primos………….." + primo);
 
-            System.out.println();
+            //System.out.println();
 
         } catch (FileNotFoundException ex) {
         }
     }
 
-    
-
     @Override
     public void run() {
-
-    }
-
-    public void valores(JLabel maxi, JLabel min, JLabel par, JLabel Impar) {
-        maxi.setText(Integer.toString(getMaximo()));
-        min.setText(Integer.toString(getMinimo()));
-        par.setText(Integer.toString(getPar()));
-        Impar.setText(Integer.toString(getImpar()));
+        estatics();
+        this.getnMax().setText(Integer.toString(getMaximo()));
+        this.getnMin().setText(Integer.toString(getMinimo()));
+        this.getnPar().setText(Integer.toString(getPar()));
+        this.getnImpar().setText(Integer.toString(getImpar()));
     }
 
     /**
@@ -178,6 +211,62 @@ public final class Estadisticas extends Thread {
      */
     public void setPrimo(int primo) {
         this.primo = primo;
+    }
+
+    /**
+     * @return the nMax
+     */
+    public JLabel getnMax() {
+        return nMax;
+    }
+
+    /**
+     * @param nMax the nMax to set
+     */
+    public void setnMax(JLabel nMax) {
+        this.nMax = nMax;
+    }
+
+    /**
+     * @return the nMin
+     */
+    public JLabel getnMin() {
+        return nMin;
+    }
+
+    /**
+     * @param nMin the nMin to set
+     */
+    public void setnMin(JLabel nMin) {
+        this.nMin = nMin;
+    }
+
+    /**
+     * @return the nPar
+     */
+    public JLabel getnPar() {
+        return nPar;
+    }
+
+    /**
+     * @param nPar the nPar to set
+     */
+    public void setnPar(JLabel nPar) {
+        this.nPar = nPar;
+    }
+
+    /**
+     * @return the nImpar
+     */
+    public JLabel getnImpar() {
+        return nImpar;
+    }
+
+    /**
+     * @param nImpar the nImpar to set
+     */
+    public void setnImpar(JLabel nImpar) {
+        this.nImpar = nImpar;
     }
 
 }
