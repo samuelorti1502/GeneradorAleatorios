@@ -10,25 +10,31 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class Sonido extends Thread{
-    
+public class Sonido extends Thread {
+
     private String[] sonidos = {"relax1.wav", "relax2.wav"};
     //public enum tiposonido {SECONDS, HOURS, HOURS12};
     private int sonidoseleccionado;
-    
-    void hiloSonidos(){
-        
+
+    void hiloSonidos() {
+
     }
-    
-    public void tiposonido (int sonidoseleccionado){
+
+    private volatile boolean flag = true;
+
+    //This method will set flag as false
+    public void stopRunning() {
+        flag = false;
+    }
+
+    public void tiposonido(int sonidoseleccionado) {
         this.sonidoseleccionado = sonidoseleccionado;
     }
-            
-       
+
     public void run() {
-        
+        //while (flag) {
         File file = new File("");
-        switch(sonidoseleccionado){
+        switch (sonidoseleccionado) {
             case 0:
                 file = new File(sonidos[0]);
                 break;
@@ -36,17 +42,16 @@ public class Sonido extends Thread{
                 file = new File(sonidos[1]);
                 break;
         }
-        
+
         try {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
             clip.start();
-            if(sonidoseleccionado == 0){
+            if (sonidoseleccionado == 0) {
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
             }
-            
-            
+
         } catch (LineUnavailableException ex) {
             Logger.getLogger(Sonido.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -54,13 +59,14 @@ public class Sonido extends Thread{
         } catch (UnsupportedAudioFileException ex) {
             Logger.getLogger(Sonido.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //}
     }
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        (new Thread(new Sonido())).start();
+        //(new Thread(new Sonido())).start();
     }
 }

@@ -47,7 +47,7 @@ public class Shell extends Thread {
         long dateTimeStart = System.currentTimeMillis();
         //System.out.println("Inicio: " + getDate(dateTimeStart, "dd/MM/yyyy HH:mm:ss:SSS"));
 
-        try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(Paths.get("./shell.txt")))) {
+        try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(Paths.get("./Oshell.txt")))) {
 
             pw.println("Inicio: " + getDate(dateTimeStart, "dd/MM/yyyy HH:mm:ss:SSS"));
 
@@ -56,7 +56,7 @@ public class Shell extends Thread {
             Arrays.stream(this.arrayToSort).forEach(x -> pw.println(x + ", "));
 
             long dateTimeEnd = System.currentTimeMillis();
-            //System.out.println("Fin: " + getDate(dateTimeEnd, "dd/MM/yyyy HH:mm:ss:SSS"));
+            pw.println("Fin: " + getDate(dateTimeEnd, "dd/MM/yyyy HH:mm:ss:SSS"));
 
             System.out.println("Se tardo: " + getDate((dateTimeEnd - dateTimeStart), "HH:mm:ss:SSS"));
             pw.println("Se tardo: " + getDate((dateTimeEnd - dateTimeStart), "HH:mm:ss:SSS"));

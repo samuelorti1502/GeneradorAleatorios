@@ -34,7 +34,7 @@ public class Aleatorios2 extends Thread {
         Random rand = new Random();
         AtomicInteger count = new AtomicInteger(0);
         //int i = 0;
-        IntStream aleatorios = rand.ints(10000, min_val, max_val);
+        IntStream aleatorios = rand.ints(1000000, min_val, max_val);
 
         try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(Paths.get("./aleatorios.txt")))) {
             //pw.print("Hola");

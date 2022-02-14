@@ -8,11 +8,17 @@ package formularios;
 import clases.Aleatorios;
 import clases.Aleatorios2;
 import clases.Burbuja;
+import clases.Estadisticas;
 import clases.Insercion;
+import clases.Primos;
+import clases.Reloj;
 import clases.Shell;
 import clases.Sonido;
+import clases.abrirArchivo;
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
@@ -21,6 +27,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -41,13 +49,24 @@ public class FrmGenerador extends javax.swing.JFrame {
     private int miliseg, seg, min;
     Thread hilo;
     boolean estado;
-
+    
+    Reloj reloj = new Reloj();
+    Sonido soundsT = new Sonido();
+    
+    int sonido;
+    
     public FrmGenerador() {
         initComponents();
-        Sonido soundsT = new Sonido();
         soundsT.tiposonido(0);
         soundsT.start();
         tempo(lblTiempo);
+        
+        reloj.setLblReloj(lblReloj);
+        reloj.start();
+        
+        lblReloj.setBackground(Color.black);
+        lblReloj.setOpaque(true);
+        
         /*Aleatorios ale = new Aleatorios();
         ale.start();*/
         Aleatorios2 ale = new Aleatorios2();
@@ -119,18 +138,39 @@ public class FrmGenerador extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jMenuItem1 = new javax.swing.JMenuItem();
         lblTiempo = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        PanelMenu = new javax.swing.JPanel();
+        lblUMG = new javax.swing.JLabel();
+        lblMenu = new javax.swing.JLabel();
+        lblReloj = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        lblMax = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lblMin = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtPar = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtImpar = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -140,11 +180,128 @@ public class FrmGenerador extends javax.swing.JFrame {
 
         txtCantidad.setText("jLabel1");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de Ordenamiento"));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jMenu1.setText("File");
+        jButton1.setText("Burbuja");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.33;
+        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
+        jPanel1.add(jButton1, gridBagConstraints);
+
+        jButton2.setText("Shell");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.33;
+        gridBagConstraints.insets = new java.awt.Insets(0, -5, 0, 15);
+        jPanel1.add(jButton2, gridBagConstraints);
+
+        jButton3.setText("Inserción");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.33;
+        gridBagConstraints.insets = new java.awt.Insets(0, -5, 0, 15);
+        jPanel1.add(jButton3, gridBagConstraints);
+
+        PanelMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        lblMenu.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMenu.setText("Algoritmos de Ordenamiento");
+
+        lblReloj.setBackground(new java.awt.Color(0, 0, 0));
+        lblReloj.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblReloj.setForeground(new java.awt.Color(102, 255, 0));
+        lblReloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblReloj.setText("00:00:00");
+        lblReloj.setBorder(new javax.swing.border.MatteBorder(null));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/umg.png"))); // NOI18N
+
+        javax.swing.GroupLayout PanelMenuLayout = new javax.swing.GroupLayout(PanelMenu);
+        PanelMenu.setLayout(PanelMenuLayout);
+        PanelMenuLayout.setHorizontalGroup(
+            PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelMenuLayout.createSequentialGroup()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelMenuLayout.createSequentialGroup()
+                        .addComponent(lblUMG)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblReloj))
+                    .addComponent(jLabel5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        PanelMenuLayout.setVerticalGroup(
+            PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6)
+            .addGroup(PanelMenuLayout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblReloj)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblUMG))
+        );
+
+        jPanel2.setLayout(new java.awt.GridLayout(5, 2));
+
+        jLabel2.setText("Maximo");
+        jPanel2.add(jLabel2);
+
+        lblMax.setText("jLabel3");
+        jPanel2.add(lblMax);
+
+        jLabel9.setText("Minimo");
+        jPanel2.add(jLabel9);
+
+        lblMin.setText("jLabel4");
+        jPanel2.add(lblMin);
+
+        jLabel7.setText("Pares");
+        jPanel2.add(jLabel7);
+
+        txtPar.setText("jLabel8");
+        jPanel2.add(txtPar);
+
+        jLabel3.setText("Impares");
+        jPanel2.add(jLabel3);
+
+        txtImpar.setText("jLabel4");
+        jPanel2.add(txtImpar);
+
+        jMenu1.setText("Ordenamientos");
 
         jMenuItem2.setText("Burbuja");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -170,9 +327,26 @@ public class FrmGenerador extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem4);
 
+        jMenuItem5.setText("Prueba");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+
+        jMenuItem6.setText("Sonido");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem6);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -182,29 +356,38 @@ public class FrmGenerador extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                        .addContainerGap())))
+                .addComponent(PanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        jPanel1.getAccessibleContext().setAccessibleName("Ordenamiento");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -223,13 +406,6 @@ public class FrmGenerador extends javax.swing.JFrame {
                 Scanner scan = new Scanner(abre);
                 ArrayList<String> data = new ArrayList<String>();
 
-                /*String a;
-                a = scan.nextLine();
-                int l = a.length();
-                int z[] = new int[l];
-                String x[] = new String[l];
-
-                x = a.split(",");*/
                 while (scan.hasNextLine()) {
 
                     String a;
@@ -351,6 +527,72 @@ public class FrmGenerador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        Estadisticas statics = statics = new Estadisticas();
+        
+        /*int a = JOptionPane.showConfirmDialog(this, "Desea abrir el archivo que se genero?");
+        
+        if(a == JOptionPane.YES_OPTION){
+            //statics.tipo(1, 0, this);
+        }else{
+            //statics.tipo(0, 0, this);
+        }*/
+        
+        statics.start();
+        
+        //Primos primo = new Primos();
+        //primo.start();
+        
+        statics.valores(lblMax, lblMin, txtPar, txtImpar);
+        
+        
+        //abrir.abrir(this, 1);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        abrirArchivo abrir = new abrirArchivo();
+        
+        int a = JOptionPane.showConfirmDialog(this, "Desea ordenar el archivo que se genero?");
+        
+        if(a == JOptionPane.YES_OPTION){
+            abrir.tipo(1, 0, this);
+        }else{
+            abrir.tipo(0, 0, this);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        abrirArchivo abrir = new abrirArchivo();
+        
+        int a = JOptionPane.showConfirmDialog(this, "Desea ordenar el archivo que se genero?");
+        
+        if(a == JOptionPane.YES_OPTION){
+            abrir.tipo(1, 1, this);
+        }else{
+            abrir.tipo(0, 1, this);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        abrirArchivo abrir = new abrirArchivo();
+        
+        int a = JOptionPane.showConfirmDialog(this, "Desea ordenar el archivo que se genero?");
+        
+        if(a == JOptionPane.YES_OPTION){
+            abrir.tipo(1, 2, this);
+        }else{
+            abrir.tipo(0, 2, this);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        soundsT.stopRunning();
+        //soundsT.
+        //String m = JOptionPane.showInputDialog("Anyone there?");
+        
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -387,6 +629,17 @@ public class FrmGenerador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelMenu;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -394,9 +647,18 @@ public class FrmGenerador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblMax;
+    private javax.swing.JLabel lblMenu;
+    private javax.swing.JLabel lblMin;
+    private javax.swing.JLabel lblReloj;
     private javax.swing.JLabel lblTiempo;
+    private javax.swing.JLabel lblUMG;
     private javax.swing.JLabel txtCantidad;
+    private javax.swing.JLabel txtImpar;
+    private javax.swing.JLabel txtPar;
     // End of variables declaration//GEN-END:variables
 }

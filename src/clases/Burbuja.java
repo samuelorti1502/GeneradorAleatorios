@@ -97,7 +97,7 @@ public class Burbuja extends Thread {
         //String hora = dfh.format(today);
         PrintWriter pw;
         try {
-            pw = new PrintWriter(Files.newBufferedWriter(Paths.get("./burbuja.txt")));
+            pw = new PrintWriter(Files.newBufferedWriter(Paths.get("./Oburbuja.txt")));
 
             pw.println("Inicio: " + getDate(dateTimeStart, "dd/MM/yyyy HH:mm:ss:SSS"));
 

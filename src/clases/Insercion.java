@@ -44,7 +44,7 @@ public class Insercion extends Thread {
         
         long dateTimeStart = System.currentTimeMillis();
 
-        try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(Paths.get("./insercion.txt")))) {
+        try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(Paths.get("./Oinsercion.txt")))) {
 
             pw.println("Inicio: " + getDate(dateTimeStart, "dd/MM/yyyy HH:mm:ss:SSS"));
 
